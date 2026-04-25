@@ -4,157 +4,323 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Services — Hightowers Financial Consultants</title>
-  <meta name="description" content="Explore Hightowers Financial Consultants' services: personal financial planning, business advisory, tax & compliance, and investment guidance.">
-  <link rel="stylesheet" href="css/style.css" />
+  <title>Services — Hightowers Consultants Group</title>
+  <meta name="description" content="Comprehensive consulting services from Hightowers Consultants Group — financial planning, business advisory, tax, investment, and lending solutions in Kenya.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #0D1B3E; --navy-2: #132247; --gold: #C9A84C; --gold-light: #E4C97A;
+      --white: #FFFFFF; --cream: #F5F2EC; --muted: #6B7280;
+      --shadow: 0 8px 48px rgba(13,27,62,0.12);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; color: var(--navy); background: var(--white); overflow-x: hidden; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+    .navbar { position: fixed; top: 0; width: 100%; z-index: 1000; background: var(--navy); box-shadow: 0 2px 32px rgba(0,0,0,0.2); }
+    .nav-inner { display: flex; align-items: center; gap: 32px; padding: 18px 48px; max-width: 1400px; margin: 0 auto; }
+    /* logo removed - no styles needed */
+    .nav-links { display: flex; list-style: none; gap: 32px; margin-left: auto; }
+    .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.02em; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px; border-radius: 3px; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 600; text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase; cursor: pointer; border: none; transition: all 0.25s; }
+    .btn-primary { background: var(--gold); color: var(--navy); }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .btn-outline { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.5); }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+    .btn-dark { background: var(--navy); color: white; }
+    .nav-cta { margin-left: 8px; }
+    .section { padding: 100px 0; }
+    .eyebrow { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 700; line-height: 1.2; margin-bottom: 20px; color: var(--navy); }
+    .section-title.light { color: var(--white); }
+    .gold-line { width: 48px; height: 3px; background: var(--gold); margin-bottom: 28px; }
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; }
+    .fade-in.visible { opacity: 1; transform: none; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: white; display: block; }
+    .mobile-nav { display: none; }
+
+    /* PAGE HERO */
+    .page-hero { position: relative; padding: 160px 0 80px; overflow: hidden; }
+    .hero-photo { position: absolute; inset: 0; z-index: 0; background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1800&q=80'); background-size: cover; background-position: center; }
+    .hero-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(110deg, rgba(10,20,55,0.93) 50%, rgba(13,27,62,0.6) 100%); }
+    .page-hero .container { position: relative; z-index: 2; }
+    .breadcrumb { color: rgba(255,255,255,0.35); font-size: 0.78rem; margin-bottom: 24px; }
+    .breadcrumb a { color: rgba(255,255,255,0.5); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .breadcrumb em { color: var(--gold); font-style: normal; }
+    .page-hero h1 { font-family: 'Playfair Display',serif; font-size: clamp(2.2rem,4vw,3.5rem); color: var(--white); margin-bottom: 16px; }
+    .page-hero p { color: rgba(255,255,255,0.6); max-width: 520px; line-height: 1.8; }
+
+    /* SERVICE DETAIL CARDS */
+    .service-detail {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+      border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); margin-bottom: 48px;
+    }
+    .service-detail.reverse { direction: rtl; }
+    .service-detail.reverse > * { direction: ltr; }
+    .service-detail-img { height: 380px; overflow: hidden; }
+    .service-detail-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+    .service-detail-img:hover img { transform: scale(1.04); }
+    .service-detail-body { padding: 56px 48px; display: flex; flex-direction: column; justify-content: center; background: var(--white); border: 1px solid #E8E4DC; border-left: none; }
+    .service-detail.reverse .service-detail-body { border-left: 1px solid #E8E4DC; border-right: none; }
+    .service-detail-body .svc-icon { font-size: 2.4rem; margin-bottom: 16px; }
+    .service-detail-body h3 { font-family: 'Playfair Display',serif; font-size: 1.6rem; margin-bottom: 16px; color: var(--navy); }
+    .service-detail-body p { color: var(--muted); line-height: 1.85; margin-bottom: 20px; font-size: 0.93rem; }
+    .service-detail-body ul { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+    .service-detail-body ul li { display: flex; align-items: flex-start; gap: 10px; color: var(--muted); font-size: 0.88rem; }
+    .service-detail-body ul li::before { content: ''; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; margin-top: 7px; flex-shrink: 0; }
+
+    /* LENDING HIGHLIGHT */
+    .lending-highlight {
+      background: var(--navy); border-radius: 8px; overflow: hidden;
+      display: grid; grid-template-columns: 1fr 1fr; margin-bottom: 48px;
+      box-shadow: var(--shadow);
+    }
+    .lending-img { height: 420px; overflow: hidden; }
+    .lending-img img { width: 100%; height: 100%; object-fit: cover; }
+    .lending-body { padding: 56px 48px; display: flex; flex-direction: column; justify-content: center; }
+    .lending-body .svc-icon { font-size: 2.4rem; margin-bottom: 16px; }
+    .lending-body h3 { font-family: 'Playfair Display',serif; font-size: 1.6rem; color: var(--white); margin-bottom: 16px; }
+    .lending-body p { color: rgba(255,255,255,0.65); line-height: 1.85; margin-bottom: 20px; font-size: 0.93rem; }
+    .lending-body ul { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+    .lending-body ul li { display: flex; align-items: flex-start; gap: 10px; color: rgba(255,255,255,0.65); font-size: 0.88rem; }
+    .lending-body ul li::before { content: ''; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; margin-top: 7px; flex-shrink: 0; }
+
+    /* PROCESS */
+    .process-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; margin-top: 56px; }
+    .process-step { text-align: center; padding: 36px 24px; position: relative; }
+    .process-step::after { content: '→'; position: absolute; right: -12px; top: 50%; transform: translateY(-50%); color: var(--gold); font-size: 1.2rem; }
+    .process-step:last-child::after { display: none; }
+    .step-num { width: 56px; height: 56px; border-radius: 50%; background: var(--gold); color: var(--navy); font-family: 'Playfair Display',serif; font-size: 1.3rem; font-weight: 700; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
+    .process-step h4 { font-family: 'Playfair Display',serif; font-size: 1rem; margin-bottom: 10px; color: var(--navy); }
+    .process-step p { color: var(--muted); font-size: 0.84rem; line-height: 1.7; }
+
+    /* CTA BAND */
+    .cta-band { background: var(--gold); padding: 80px 0; }
+    .cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+    .cta-inner h2 { font-family: 'Playfair Display',serif; font-size: 2rem; color: var(--navy); }
+    .cta-inner p { color: rgba(13,27,62,0.7); margin-top: 8px; }
+    .cta-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .cta-band .btn-primary { background: var(--navy); color: var(--white); }
+    .cta-band .btn-outline { border-color: var(--navy); color: var(--navy); }
+    .cta-band .btn-outline:hover { background: var(--navy); color: white; }
+
+    /* FOOTER */
+    footer { background: #060E20; padding: 80px 0 40px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 48px; padding-bottom: 60px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .footer-brand p { color: rgba(255,255,255,0.45); font-size: 0.85rem; line-height: 1.8; max-width: 280px; margin-top: 0; }
+    .footer-col h4 { color: var(--white); font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 20px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { color: rgba(255,255,255,0.45); text-decoration: none; font-size: 0.84rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 32px; flex-wrap: wrap; gap: 16px; }
+    .footer-bottom span, .footer-bottom a { color: rgba(255,255,255,0.3); font-size: 0.78rem; text-decoration: none; }
+    .wa-float { position: fixed; bottom: 28px; right: 28px; z-index: 900; width: 56px; height: 56px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; box-shadow: 0 4px 20px rgba(37,211,102,0.4); text-decoration: none; animation: bob 3s ease-in-out infinite; }
+    @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+
+    @media(max-width:900px){
+      .nav-links,.nav-cta{display:none;}
+      .hamburger{display:flex;}
+      .mobile-nav{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--navy);z-index:999;flex-direction:column;padding:80px 32px 32px;gap:24px;}
+      .mobile-nav.open{display:flex;}
+      .mobile-nav a{color:white;text-decoration:none;font-size:1.2rem;font-weight:600;}
+      .service-detail, .lending-highlight { grid-template-columns: 1fr; }
+      .service-detail.reverse { direction: ltr; }
+      .service-detail-img, .lending-img { height: 260px; }
+      .service-detail-body, .lending-body { padding: 36px 28px; }
+      .service-detail-body { border-left: 1px solid #E8E4DC; border-top: none; }
+      .process-steps { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media(max-width:600px){
+      .process-steps,.footer-grid{grid-template-columns:1fr;}
+      .process-step::after{display:none;}
+    }
+  </style>
 </head>
 <body>
 
-<nav class="navbar scrolled">
+<nav class="navbar">
   <div class="nav-inner">
-    <a href="index.html" class="logo">
-      <div class="logo-mark">H</div>
-      <div class="logo-text">
-        <span class="logo-name">Hightowers</span>
-        <span class="logo-sub">Financial Consultants</span>
-      </div>
-    </a>
+    <!-- LOGO REMOVED -->
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
-      <li><a href="services.html">Services</a></li>
+      <li><a href="services.html" class="active">Services</a></li>
       <li><a href="blog.html">Insights</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
     <a href="contact.html" class="btn btn-primary nav-cta">Book Consultation</a>
-    <div class="hamburger"><span></span><span></span><span></span></div>
+    <div class="hamburger" onclick="document.querySelector('.mobile-nav').classList.toggle('open')"><span></span><span></span><span></span></div>
   </div>
 </nav>
 <nav class="mobile-nav">
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="services.html">Services</a>
-  <a href="blog.html">Insights</a>
-  <a href="contact.html">Contact</a>
-  <a href="contact.html" class="btn btn-primary" style="text-align:center;margin-top:8px;">Book Consultation</a>
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a>
+  <a href="blog.html">Insights</a><a href="contact.html">Contact</a>
+  <a href="contact.html" class="btn btn-primary" style="text-align:center;margin-top:16px;">Book Consultation</a>
 </nav>
 
+<!-- PAGE HERO -->
 <section class="page-hero">
+  <div class="hero-photo"></div>
+  <div class="hero-overlay"></div>
   <div class="container">
-    <div class="breadcrumb"><a href="index.html">Home</a> <span>/</span> <em>Services</em></div>
+    <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><em>Services</em></div>
     <span class="eyebrow">What We Offer</span>
-    <h1>Financial Services Built<br>Around Your Needs</h1>
-    <p>From personal planning to corporate strategy — every service we offer is designed to create real, measurable impact for you.</p>
+    <h1>Comprehensive Services<br>for Every Goal</h1>
+    <p>From personal budgeting to corporate investment strategy and lending solutions — we bring clarity and confidence to every financial decision.</p>
   </div>
 </section>
 
+<!-- SERVICES OVERVIEW PICS -->
+<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:4px;height:220px;overflow:hidden;">
+  <div style="overflow:hidden;"><img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=400&q=80" alt="" style="width:100%;height:100%;object-fit:cover;" /></div>
+  <div style="overflow:hidden;"><img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=400&q=80" alt="" style="width:100%;height:100%;object-fit:cover;" /></div>
+  <div style="overflow:hidden;"><img src="https://images.unsplash.com/photo-1559526324-593bc073d938?w=400&q=80" alt="" style="width:100%;height:100%;object-fit:cover;" /></div>
+  <div style="overflow:hidden;"><img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&q=80" alt="" style="width:100%;height:100%;object-fit:cover;" /></div>
+  <div style="overflow:hidden;"><img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=400&q=80" alt="" style="width:100%;height:100%;object-fit:cover;" /></div>
+</div>
+
+<!-- SERVICE DETAILS -->
 <section class="section">
   <div class="container">
 
-    <!-- SERVICE 1 -->
-    <div class="service-detail">
-      <div class="service-detail-grid">
-        <div class="fade-in">
-          <span class="eyebrow">Service 01</span>
-          <h2 class="section-title">Personal Financial<br>Planning</h2>
-          <div class="gold-line"></div>
-          <p style="color:var(--muted);line-height:1.85;margin-bottom:16px;">
-            Life's financial journey has many stages — from your first job to retirement and everything in between. We help you navigate each stage with confidence, clarity, and a concrete plan that actually fits your life.
-          </p>
-          <p style="color:var(--muted);line-height:1.85;margin-bottom:20px;">
-            Whether you're struggling with debt, trying to save more, or planning for your family's future, our advisors sit with you, listen, and design a path forward that is realistic and achievable.
-          </p>
-          <ul class="service-includes">
-            <li><div class="include-dot"></div>Budgeting & saving strategies</li>
-            <li><div class="include-dot"></div>Debt restructuring & management</li>
-            <li><div class="include-dot"></div>Retirement & pension planning</li>
-            <li><div class="include-dot"></div>Emergency fund structuring</li>
-            <li><div class="include-dot"></div>Financial goal-setting & tracking</li>
-          </ul>
-          <a href="contact.html" class="btn btn-dark">Book This Service</a>
-        </div>
-        <div class="service-visual fade-in">💰</div>
+    <!-- 1: Personal -->
+    <div class="service-detail fade-in">
+      <div class="service-detail-img">
+        <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&q=80" alt="Personal Financial Planning" />
+      </div>
+      <div class="service-detail-body">
+        <div class="svc-icon">💰</div>
+        <h3>Personal Financial Planning</h3>
+        <p>Take full control of your money with a personalised financial roadmap built around your income, goals, and lifestyle.</p>
+        <ul>
+          <li>Budgeting &amp; cash flow management</li>
+          <li>Savings strategies &amp; goal setting</li>
+          <li>Debt management &amp; restructuring</li>
+          <li>Retirement &amp; pension planning</li>
+          <li>Life insurance &amp; risk planning</li>
+        </ul>
+        <a href="contact.html" class="btn btn-primary">Book a Consultation</a>
       </div>
     </div>
 
-    <!-- SERVICE 2 -->
-    <div class="service-detail">
-      <div class="service-detail-grid reverse">
-        <div class="fade-in">
-          <span class="eyebrow">Service 02</span>
-          <h2 class="section-title">Business Advisory<br>Services</h2>
-          <div class="gold-line"></div>
-          <p style="color:var(--muted);line-height:1.85;margin-bottom:16px;">
-            Running a business in Kenya requires more than hard work — it demands sharp financial intelligence. We provide business owners and management teams with the financial insight needed to make better decisions, faster.
-          </p>
-          <p style="color:var(--muted);line-height:1.85;margin-bottom:20px;">
-            From start-ups needing financial foundations to established companies optimising for growth, we bring deep expertise and local market understanding to every engagement.
-          </p>
-          <ul class="service-includes">
-            <li><div class="include-dot"></div>Financial statement analysis</li>
-            <li><div class="include-dot"></div>Cash flow management & forecasting</li>
-            <li><div class="include-dot"></div>Business strategy & growth planning</li>
-            <li><div class="include-dot"></div>Capital raising & investor readiness</li>
-            <li><div class="include-dot"></div>Due diligence & feasibility studies</li>
-          </ul>
-          <a href="contact.html" class="btn btn-dark">Book This Service</a>
-        </div>
-        <div class="service-visual fade-in">📊</div>
+    <!-- 2: Business -->
+    <div class="service-detail reverse fade-in">
+      <div class="service-detail-img">
+        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80" alt="Business Advisory" />
+      </div>
+      <div class="service-detail-body">
+        <div class="svc-icon">📊</div>
+        <h3>Business Advisory</h3>
+        <p>Drive sustainable growth with expert financial analysis, cash flow management, and strategic business support tailored for your company.</p>
+        <ul>
+          <li>Cash flow analysis &amp; forecasting</li>
+          <li>Business financial strategy</li>
+          <li>SME growth planning</li>
+          <li>Financial reporting &amp; analysis</li>
+          <li>Startup &amp; scale-up advisory</li>
+        </ul>
+        <a href="contact.html" class="btn btn-primary">Book a Consultation</a>
       </div>
     </div>
 
-    <!-- SERVICE 3 -->
-    <div class="service-detail">
-      <div class="service-detail-grid">
-        <div class="fade-in">
-          <span class="eyebrow">Service 03</span>
-          <h2 class="section-title">Tax & Compliance<br>Consulting</h2>
-          <div class="gold-line"></div>
-          <p style="color:var(--muted);line-height:1.85;margin-bottom:16px;">
-            The Kenyan tax landscape is complex and constantly evolving. Staying compliant while minimising your tax burden requires expert guidance — that's exactly what our tax advisors provide.
-          </p>
-          <p style="color:var(--muted);line-height:1.85;margin-bottom:20px;">
-            We work with both individual and corporate clients to ensure full KRA compliance, strategic tax planning, and confident handling of all regulatory requirements.
-          </p>
-          <ul class="service-includes">
-            <li><div class="include-dot"></div>Income tax planning & advisory</li>
-            <li><div class="include-dot"></div>KRA filing support (individual & corporate)</li>
-            <li><div class="include-dot"></div>VAT & withholding tax management</li>
-            <li><div class="include-dot"></div>Tax compliance audits</li>
-            <li><div class="include-dot"></div>Regulatory compliance guidance</li>
-          </ul>
-          <a href="contact.html" class="btn btn-dark">Book This Service</a>
-        </div>
-        <div class="service-visual fade-in">🧾</div>
+    <!-- 3: Tax -->
+    <div class="service-detail fade-in">
+      <div class="service-detail-img">
+        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80" alt="Tax and Compliance" />
+      </div>
+      <div class="service-detail-body">
+        <div class="svc-icon">🧾</div>
+        <h3>Tax &amp; Compliance</h3>
+        <p>Stay compliant, minimise liability, and avoid penalties. Our tax experts handle planning, filing support, and regulatory compliance.</p>
+        <ul>
+          <li>KRA compliance &amp; filing support</li>
+          <li>Tax planning &amp; optimisation</li>
+          <li>VAT, PAYE &amp; corporate tax</li>
+          <li>Tax audit representation</li>
+          <li>Regulatory advisory</li>
+        </ul>
+        <a href="contact.html" class="btn btn-primary">Book a Consultation</a>
       </div>
     </div>
 
-    <!-- SERVICE 4 -->
-    <div class="service-detail">
-      <div class="service-detail-grid reverse">
-        <div class="fade-in">
-          <span class="eyebrow">Service 04</span>
-          <h2 class="section-title">Investment<br>Guidance</h2>
-          <div class="gold-line"></div>
-          <p style="color:var(--muted);line-height:1.85;margin-bottom:16px;">
-            Making your money work harder requires more than enthusiasm — it requires strategy, research, and a clear understanding of risk. Our investment advisors guide you through the Kenyan and regional investment landscape with precision.
-          </p>
-          <p style="color:var(--muted);line-height:1.85;margin-bottom:20px;">
-            We help you build portfolios aligned to your risk tolerance, time horizon, and financial objectives — whether you're a first-time investor or looking to optimise an existing portfolio.
-          </p>
-          <ul class="service-includes">
-            <li><div class="include-dot"></div>Investment planning & strategy</li>
-            <li><div class="include-dot"></div>Risk profiling & assessment</li>
-            <li><div class="include-dot"></div>NSE & Treasury Bills advisory</li>
-            <li><div class="include-dot"></div>Real estate investment guidance</li>
-            <li><div class="include-dot"></div>Portfolio review & optimisation</li>
-          </ul>
-          <a href="contact.html" class="btn btn-dark">Book This Service</a>
-        </div>
-        <div class="service-visual fade-in">📈</div>
+    <!-- 4: Investment -->
+    <div class="service-detail reverse fade-in">
+      <div class="service-detail-img">
+        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80" alt="Investment Guidance" />
+      </div>
+      <div class="service-detail-body">
+        <div class="svc-icon">📈</div>
+        <h3>Investment Guidance</h3>
+        <p>Make smarter investment decisions with expert analysis tailored to your risk appetite, timeline, and financial objectives.</p>
+        <ul>
+          <li>NSE &amp; equities advisory</li>
+          <li>Treasury bills &amp; bonds</li>
+          <li>Real estate investment guidance</li>
+          <li>Portfolio construction &amp; review</li>
+          <li>Risk profiling &amp; management</li>
+        </ul>
+        <a href="contact.html" class="btn btn-primary">Book a Consultation</a>
       </div>
     </div>
 
+    <!-- 5: Lending (highlighted in navy) -->
+    <div class="lending-highlight fade-in">
+      <div class="lending-img">
+        <img src="https://images.unsplash.com/photo-1559526324-593bc073d938?w=800&q=80" alt="Lending and Loans" />
+      </div>
+      <div class="lending-body">
+        <div class="svc-icon">🏦</div>
+        <h3>Lending &amp; Loans</h3>
+        <p>Access tailored lending solutions for personal and business needs. We guide you through the best options available, ensuring you secure the right facility at the right terms.</p>
+        <ul>
+          <li>Personal loan advisory &amp; structuring</li>
+          <li>SME &amp; business loan facilitation</li>
+          <li>Mortgage advisory &amp; application support</li>
+          <li>Bridging finance solutions</li>
+          <li>Credit profile assessment &amp; improvement</li>
+          <li>Debt consolidation planning</li>
+        </ul>
+        <a href="contact.html" class="btn btn-primary">Enquire About Lending</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" style="background:var(--cream);">
+  <div class="container">
+    <div class="fade-in" style="text-align:center;max-width:560px;margin:0 auto;">
+      <span class="eyebrow">Our Process</span>
+      <h2 class="section-title">How We Work<br>With You</h2>
+    </div>
+    <div class="process-steps fade-in">
+      <div class="process-step">
+        <div class="step-num">01</div>
+        <h4>Free Consultation</h4>
+        <p>We start with a no-obligation conversation to understand your goals and financial situation.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">02</div>
+        <h4>Analysis &amp; Assessment</h4>
+        <p>We conduct a thorough review of your finances to identify opportunities and gaps.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">03</div>
+        <h4>Tailored Strategy</h4>
+        <p>We craft a clear, personalised action plan designed specifically for your goals.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">04</div>
+        <h4>Ongoing Support</h4>
+        <p>We stay with you beyond the first engagement to track progress and adapt as needed.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -163,12 +329,12 @@
   <div class="container">
     <div class="cta-inner">
       <div>
-        <h2>Not Sure Which Service<br>Is Right for You?</h2>
-        <p>Book a free introductory consultation and our team will guide you to the right starting point.</p>
+        <h2>Ready to Get Started?<br>Let's Talk.</h2>
+        <p>Book your free introductory consultation and see what we can do for you.</p>
       </div>
       <div class="cta-actions">
-        <a href="contact.html" class="btn btn-primary">Book Free Consultation</a>
-        <a href="about.html" class="btn btn-outline">Learn About Us</a>
+        <a href="contact.html" class="btn btn-primary">Book Consultation</a>
+        <a href="about.html" class="btn btn-outline">About Our Team</a>
       </div>
     </div>
   </div>
@@ -178,46 +344,44 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="index.html" class="logo">
-          <div class="logo-mark">H</div>
-          <div class="logo-text">
-            <span class="logo-name">Hightowers</span>
-            <span class="logo-sub">Financial Consultants</span>
-          </div>
-        </a>
+        <!-- LOGO REMOVED -->
         <p>Empowering individuals and businesses with clarity and strategy for lasting financial success in Kenya and beyond.</p>
       </div>
       <div class="footer-col"><h4>Services</h4>
         <ul class="footer-links">
           <li><a href="services.html">Personal Financial Planning</a></li>
           <li><a href="services.html">Business Advisory</a></li>
-          <li><a href="services.html">Tax & Compliance</a></li>
+          <li><a href="services.html">Tax &amp; Compliance</a></li>
           <li><a href="services.html">Investment Guidance</a></li>
+          <li><a href="services.html">Lending &amp; Loans</a></li>
         </ul>
       </div>
       <div class="footer-col"><h4>Company</h4>
         <ul class="footer-links">
           <li><a href="about.html">About Us</a></li>
-          <li><a href="blog.html">Insights & Blog</a></li>
+          <li><a href="blog.html">Insights &amp; Blog</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
       <div class="footer-col"><h4>Contact</h4>
         <ul class="footer-links">
-          <li><a href="#">📍 Nairobi, Kenya</a></li>
+          <li><a href="#">📍 NexGen Mall, Mombasa Rd, 5th Floor</a></li>
           <li><a href="tel:+254735135951">📞 +254 735 135 951</a></li>
           <li><a href="mailto:info@hightowers.co.ke">✉ info@hightowers.co.ke</a></li>
+          <li><a href="https://wa.me/254102696261">💬 WhatsApp Us</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 Hightowers Financial Consultants. All rights reserved.</span>
-      <div style="display:flex;gap:24px;"><a href="#">Privacy Policy</a><a href="#">Terms</a></div>
+      <span>© 2020 Hightowers Consultants Group. All rights reserved.</span>
+      <div style="display:flex;gap:24px;"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Disclaimer</a></div>
     </div>
   </div>
 </footer>
-
 <a href="https://wa.me/254102696261" class="wa-float" target="_blank">💬</a>
-<script src="js/main.js"></script>
+<script>
+  const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), {threshold:0.1});
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
 </body>
 </html>
