@@ -1,24 +1,288 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Us — Hightowers Financial Consultants</title>
-  <meta name="description" content="Learn about Hightowers Financial Consultants — our mission, vision, values, and the experienced team behind Kenya's trusted financial advisory firm.">
-  <link rel="stylesheet" href="css/style.css" />
+  <title>Hightowers Consultants Group — Smart Financial Decisions Start Here</title>
+  <meta name="description" content="Hightowers Consultants Group — expert financial advisory, investment guidance, tax consulting, business advisory and lending services in Kenya.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0D1B3E;
+      --navy-2: #132247;
+      --gold: #C9A84C;
+      --gold-light: #E4C97A;
+      --white: #FFFFFF;
+      --cream: #F5F2EC;
+      --muted: #6B7280;
+      --shadow: 0 8px 48px rgba(13,27,62,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; color: var(--navy); background: var(--white); overflow-x: hidden; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+
+    /* ── NAVBAR (Logo integrated from inline img) ── */
+    .navbar {
+      position: fixed; top: 0; width: 100%; z-index: 1000;
+      padding: 0; transition: all 0.4s;
+      background: transparent;
+    }
+    .navbar.scrolled {
+      background: var(--navy);
+      box-shadow: 0 2px 32px rgba(0,0,0,0.2);
+    }
+    .nav-inner {
+      display: flex; align-items: center; gap: 32px;
+      padding: 18px 48px;
+      max-width: 1400px; margin: 0 auto;
+    }
+    .logo { display: flex; align-items: center; gap: 0; text-decoration: none; flex-shrink: 0; }
+    /* Clean logo styling: text-based + accent */
+    .logo-icon {
+      background: var(--gold);
+      width: 38px;
+      height: 38px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.3rem;
+      color: var(--navy);
+      margin-right: 10px;
+      font-family: 'Playfair Display', serif;
+    }
+    .logo-text {
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: -0.02em;
+      color: white;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .navbar.scrolled .logo-text { color: white; }
+    .logo span:first-child { font-weight: 800; }
+    .nav-links { display: flex; list-style: none; gap: 32px; margin-left: auto; }
+    .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.02em; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--gold); }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px; border-radius: 3px; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 600; text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase; cursor: pointer; border: none; transition: all 0.25s; }
+    .btn-primary { background: var(--gold); color: var(--navy); }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .btn-outline { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.5); }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+    .btn-dark { background: var(--navy); color: var(--white); }
+    .btn-dark:hover { background: #1a2d5a; }
+    .nav-cta { margin-left: 8px; }
+
+    /* ── HERO (minimal naming) ── */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1800&q=80');
+      background-size: cover; background-position: center 30%;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(110deg, rgba(10,20,55,0.93) 0%, rgba(13,27,62,0.78) 60%, rgba(13,27,62,0.5) 100%);
+    }
+    .hero-pattern {
+      position: absolute; inset: 0; z-index: 2;
+      background-image: repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255,255,255,0.015) 60px, rgba(255,255,255,0.015) 61px),
+                        repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,255,255,0.015) 60px, rgba(255,255,255,0.015) 61px);
+    }
+    .hero .container { position: relative; z-index: 3; padding-top: 100px; padding-bottom: 80px; }
+    .hero-content { max-width: 700px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3);
+      color: var(--gold); padding: 8px 20px; border-radius: 100px;
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+    .badge-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5.5vw, 5rem);
+      color: var(--white); font-weight: 900; line-height: 1.08;
+      margin-bottom: 24px;
+    }
+    .hero h1 em { color: var(--gold); font-style: italic; }
+    .hero-sub { color: rgba(255,255,255,0.7); font-size: 1.05rem; line-height: 1.8; margin-bottom: 40px; max-width: 560px; }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 64px; }
+    .hero-stats {
+      display: flex; gap: 48px; flex-wrap: wrap;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      padding-top: 40px;
+    }
+    .stat-num {
+      font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700;
+      color: var(--gold); line-height: 1;
+    }
+    .stat-label { color: rgba(255,255,255,0.5); font-size: 0.78rem; margin-top: 6px; letter-spacing: 0.04em; }
+
+    /* ── EYEBROW ── */
+    .eyebrow {
+      display: inline-block; font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 700; line-height: 1.2; margin-bottom: 20px; color: var(--navy);
+    }
+    .section-title.light { color: var(--white); }
+    .gold-line { width: 48px; height: 3px; background: var(--gold); margin-bottom: 28px; }
+    .section { padding: 100px 0; }
+
+    /* ── SERVICES ── */
+    .services-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+      gap: 28px; margin-top: 56px;
+    }
+    .service-card {
+      background: var(--white); border-radius: 8px; padding: 44px 36px;
+      border: 1px solid #E8E4DC;
+      box-shadow: var(--shadow); transition: all 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px; background: var(--gold);
+      transform: scaleX(0); transition: transform 0.3s;
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(13,27,62,0.15); }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon { font-size: 2.2rem; margin-bottom: 20px; }
+    .service-card h3 { font-family: 'Playfair Display',serif; font-size: 1.25rem; margin-bottom: 14px; color: var(--navy); }
+    .service-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.8; margin-bottom: 24px; }
+    .service-link { color: var(--gold); font-size: 0.82rem; font-weight: 700; text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; }
+
+    /* ── PICTURE STRIP (abstract business) ── */
+    .pic-strip {
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4px;
+      height: 420px; overflow: hidden;
+    }
+    .pic-strip-item { overflow: hidden; position: relative; }
+    .pic-strip-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
+    .pic-strip-item:hover img { transform: scale(1.05); }
+    .pic-strip-sub { display: grid; grid-rows: 1fr 1fr; gap: 4px; }
+
+    /* ── WHY US (cleaned) ── */
+    .why-us { background: var(--navy); }
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .why-features { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 40px; }
+    .feature-num { font-family: 'Playfair Display',serif; font-size: 2rem; font-weight: 700; color: rgba(201,168,76,0.25); line-height: 1; margin-bottom: 8px; }
+    .feature-title { font-weight: 700; color: var(--white); margin-bottom: 8px; font-size: 0.95rem; }
+    .feature-desc { color: rgba(255,255,255,0.5); font-size: 0.84rem; line-height: 1.7; }
+    .why-visual { position: relative; }
+    .why-card-main {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px; padding: 40px; margin-bottom: 16px;
+    }
+    .why-card-main h4 { color: var(--white); font-family: 'Playfair Display',serif; font-size: 1.1rem; margin-bottom: 24px; }
+    .checklist { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+    .checklist li { display: flex; align-items: flex-start; gap: 14px; color: rgba(255,255,255,0.7); font-size: 0.88rem; line-height: 1.5; }
+    .check-icon { width: 20px; height: 20px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; color: var(--navy); font-weight: 900; flex-shrink: 0; }
+    .cards-row { display: flex; gap: 16px; }
+    .why-card-accent { flex: 0 0 auto; background: var(--gold); border-radius: 8px; padding: 28px 24px; text-align: center; }
+    .accent-num { font-family: 'Playfair Display',serif; font-size: 2.4rem; font-weight: 900; color: var(--navy); line-height: 1; }
+    .accent-text { font-size: 0.75rem; color: var(--navy); font-weight: 700; margin-top: 4px; line-height: 1.3; }
+    .why-card-bottom { flex: 1; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 28px 24px; display: flex; align-items: center; gap: 16px; }
+    .wb-icon { font-size: 1.8rem; }
+    .wb-text { font-size: 0.82rem; color: rgba(255,255,255,0.65); line-height: 1.5; }
+    .wb-text strong { display: block; color: var(--white); margin-bottom: 2px; }
+
+    /* ── LIFESTYLE PICS SECTION (removed any personal names, only abstract business) ── */
+    .lifestyle-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-top: 56px; }
+    .lifestyle-card { border-radius: 8px; overflow: hidden; position: relative; height: 280px; }
+    .lifestyle-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+    .lifestyle-card:hover img { transform: scale(1.06); }
+    .lifestyle-card-label { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(13,27,62,0.85)); padding: 32px 24px 20px; color: white; font-size: 0.9rem; font-weight: 600; }
+
+    /* ── TESTIMONIALS (client names and locations anonymized / role generics) ── */
+    .testimonials { background: var(--cream); }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; margin-top: 56px; }
+    .testimonial-card { background: var(--white); border-radius: 8px; padding: 40px 36px; box-shadow: var(--shadow); position: relative; }
+    .quote-mark { font-family: 'Playfair Display',serif; font-size: 5rem; color: var(--gold); line-height: 0.6; margin-bottom: 20px; display: block; }
+    .testimonial-text { color: var(--muted); font-size: 0.92rem; line-height: 1.85; margin-bottom: 28px; }
+    .testimonial-author { display: flex; align-items: center; gap: 14px; }
+    .author-avatar { width: 46px; height: 46px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; color: var(--gold); font-weight: 700; font-size: 0.85rem; flex-shrink: 0; }
+    .stars { color: var(--gold); font-size: 0.8rem; margin-bottom: 3px; }
+    .author-name { font-weight: 700; color: var(--navy); font-size: 0.9rem; }
+    .author-role { font-size: 0.78rem; color: var(--muted); }
+
+    /* ── CTA BAND ── */
+    .cta-band { background: var(--gold); padding: 80px 0; }
+    .cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+    .cta-inner h2 { font-family: 'Playfair Display',serif; font-size: 2rem; color: var(--navy); }
+    .cta-inner p { color: rgba(13,27,62,0.7); margin-top: 8px; }
+    .cta-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .cta-band .btn-primary { background: var(--navy); color: var(--white); }
+    .cta-band .btn-outline { border-color: var(--navy); color: var(--navy); }
+    .cta-band .btn-outline:hover { background: var(--navy); color: white; }
+
+    /* ── FOOTER (refined) ── */
+    footer { background: #060E20; padding: 80px 0 40px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 48px; padding-bottom: 60px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .footer-brand .logo { display: flex; align-items: center; gap: 6px; margin-bottom: 20px; text-decoration: none; }
+    .footer-brand .logo-icon-small { background: var(--gold); width: 32px; height: 32px; border-radius: 5px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1rem; color: var(--navy); }
+    .footer-brand .logo-text-small { color: white; font-weight: 600; font-size: 1rem; letter-spacing: -0.2px; }
+    .footer-brand p { color: rgba(255,255,255,0.45); font-size: 0.85rem; line-height: 1.8; max-width: 280px; }
+    .footer-col h4 { color: var(--white); font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 20px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { color: rgba(255,255,255,0.45); text-decoration: none; font-size: 0.84rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 32px; flex-wrap: wrap; gap: 16px; }
+    .footer-bottom span, .footer-bottom a { color: rgba(255,255,255,0.3); font-size: 0.78rem; text-decoration: none; }
+    .footer-bottom a:hover { color: var(--gold); }
+
+    /* ── WA FLOAT ── */
+    .wa-float { position: fixed; bottom: 28px; right: 28px; z-index: 900; width: 56px; height: 56px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; box-shadow: 0 4px 20px rgba(37,211,102,0.4); text-decoration: none; animation: bob 3s ease-in-out infinite; }
+    @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    .intro-pic-row { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; margin-bottom: 80px; }
+    .intro-pic { border-radius: 8px; overflow: hidden; height: 400px; }
+    .intro-pic img { width: 100%; height: 100%; object-fit: cover; }
+    .intro-text { padding: 16px 0; }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: white; display: block; }
+    .mobile-nav { display: none; }
+
+    @media(max-width:900px){
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .mobile-nav { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--navy); z-index: 999; flex-direction: column; padding: 80px 32px 32px; gap: 24px; }
+      .mobile-nav.open { display: flex; }
+      .mobile-nav a { color: white; text-decoration: none; font-size: 1.2rem; font-weight: 600; }
+      .why-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .lifestyle-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .pic-strip { grid-template-columns: 1fr; height: auto; }
+      .intro-pic-row { grid-template-columns: 1fr; }
+    }
+    @media(max-width:600px){ .services-grid, .lifestyle-grid, .footer-grid, .testimonials-grid { grid-template-columns: 1fr; } .hero-stats { gap: 24px; } }
+  </style>
 </head>
 <body>
 
-<nav class="navbar scrolled">
+<nav class="navbar" id="navbar">
   <div class="nav-inner">
-    <a href="index.html" class="logo">
-      <div class="logo-mark">H</div>
-      <div class="logo-text">
-        <span class="logo-name">Hightowers</span>
-        <span class="logo-sub">Financial Consultants</span>
-      </div>
-    </a>
+    <!-- LOGO REMOVED -->
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
@@ -27,232 +291,132 @@
       <li><a href="contact.html">Contact</a></li>
     </ul>
     <a href="contact.html" class="btn btn-primary nav-cta">Book Consultation</a>
-    <div class="hamburger"><span></span><span></span><span></span></div>
+    <div class="hamburger" onclick="document.querySelector('.mobile-nav').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </div>
   </div>
 </nav>
-<nav class="mobile-nav">
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="services.html">Services</a>
-  <a href="blog.html">Insights</a>
-  <a href="contact.html">Contact</a>
-  <a href="contact.html" class="btn btn-primary" style="text-align:center;margin-top:8px;">Book Consultation</a>
-</nav>
 
-<!-- PAGE HERO -->
-<section class="page-hero">
+<div class="mobile-nav">
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="blog.html">Insights</a><a href="contact.html">Contact</a>
+  <a href="contact.html" class="btn btn-primary" style="text-align:center;margin-top:16px;">Book Consultation</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-pattern"></div>
   <div class="container">
-    <div class="breadcrumb"><a href="index.html">Home</a> <span>/</span> <em>About Us</em></div>
-    <span class="eyebrow">Our Story</span>
-    <h1>A Firm Built on<br>Integrity & Excellence</h1>
-    <p>We are more than advisors — we are your dedicated financial partners, committed to your long-term success.</p>
+    <div class="hero-content">
+      <div class="hero-badge"><span class="badge-dot"></span>Trusted Experts — Nairobi, Kenya</div>
+      <h1>Smart <em>Financial</em><br>Decisions<br>Start Here</h1>
+      <p class="hero-sub">At Hightowers Consultants Group, we help individuals and businesses take control of their finances with expert advice, strategic planning, and solutions tailored to your unique goals.</p>
+      <div class="hero-actions"><a href="contact.html" class="btn btn-primary">Book a Consultation</a><a href="services.html" class="btn btn-outline">Explore Services</a></div>
+      <div class="hero-stats">
+        <div><div class="stat-num" data-target="500" data-suffix="+">0+</div><div class="stat-label">Clients Served</div></div>
+        <div><div class="stat-num" data-target="5" data-suffix="+ Yrs">0+ Yrs</div><div class="stat-label">Industry Experience</div></div>
+        <div><div class="stat-num" data-target="98" data-suffix="%">0%</div><div class="stat-label">Client Satisfaction</div></div>
+        <div><div class="stat-num" data-target="5" data-suffix="">0</div><div class="stat-label">Core Services</div></div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- WHO WE ARE -->
+<div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:4px;height:360px;overflow:hidden;">
+  <div style="overflow:hidden;"><img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=900&q=80" alt="Business professionals" style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" /></div>
+  <div style="overflow:hidden;"><img src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=700&q=80" alt="Financial planning" style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" /></div>
+  <div style="overflow:hidden;"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=700&q=80" alt="Team meeting" style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" /></div>
+</div>
+
+<!-- SERVICES -->
+<section class="section" style="background:var(--cream);">
+  <div class="container">
+    <div class="fade-in"><span class="eyebrow">What We Offer</span><h2 class="section-title">Comprehensive Consulting<br>Services for Every Stage</h2><p style="color:var(--muted);max-width:540px;line-height:1.8;">From personal budgeting to corporate investment strategy, we bring clarity and confidence to every financial decision.</p></div>
+    <div class="services-grid fade-in">
+      <div class="service-card"><div class="service-icon">💰</div><h3>Personal Financial Planning</h3><p>Take control of your income, savings, and future. We craft personalised strategies for budgeting, debt management, and retirement.</p><a href="services.html" class="service-link">Learn more →</a></div>
+      <div class="service-card"><div class="service-icon">📊</div><h3>Business Advisory</h3><p>Drive sustainable growth with expert financial analysis, cash flow management, and strategic business support tailored for your company.</p><a href="services.html" class="service-link">Learn more →</a></div>
+      <div class="service-card"><div class="service-icon">🧾</div><h3>Tax &amp; Compliance</h3><p>Stay compliant, minimise liability, and avoid penalties. Our tax experts handle planning, filing support, and regulatory compliance.</p><a href="services.html" class="service-link">Learn more →</a></div>
+      <div class="service-card"><div class="service-icon">📈</div><h3>Investment Guidance</h3><p>Make smarter investment decisions with expert analysis tailored to your risk appetite, timeline, and financial objectives.</p><a href="services.html" class="service-link">Learn more →</a></div>
+      <div class="service-card" style="border-top:3px solid var(--gold);background:linear-gradient(135deg,#fff 80%,#f9f5ec);"><div class="service-icon">🏦</div><h3>Lending &amp; Loans</h3><p>Access tailored lending solutions for personal and business needs — from bridging finance and SME loans to mortgage advisory and credit structuring.</p><a href="services.html" class="service-link">Learn more →</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO / ABOUT SECTION -->
 <section class="section">
   <div class="container">
-    <div class="about-grid">
-      <div class="fade-in">
-        <span class="eyebrow">Who We Are</span>
-        <h2 class="section-title">Kenya's Trusted Financial Advisory Partner</h2>
-        <div class="gold-line"></div>
-        <p style="color:var(--muted);line-height:1.9;margin-bottom:20px;">
-          Hightowers Financial Consultants is a trusted financial advisory firm dedicated to helping individuals and businesses achieve financial stability and long-term success.
-        </p>
-        <p style="color:var(--muted);line-height:1.9;margin-bottom:20px;">
-          We combine deep industry knowledge, practical experience, and a thorough understanding of Kenya's financial ecosystem to deliver solutions that are both effective and sustainable — not just in the short term, but for years to come.
-        </p>
-        <p style="color:var(--muted);line-height:1.9;margin-bottom:36px;">
-          Founded in Nairobi, we have grown from a boutique advisory practice into a firm that serves hundreds of clients across personal, business, and institutional segments, maintaining the same client-first philosophy from day one.
-        </p>
-        <a href="contact.html" class="btn btn-dark">Start a Conversation</a>
-      </div>
-
-      <div class="fade-in" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-content:start;">
-        <div style="background:var(--navy);border-radius:8px;padding:36px;display:flex;flex-direction:column;gap:8px;">
-          <div style="font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;color:var(--gold);">500+</div>
-          <div style="font-size:0.85rem;color:rgba(255,255,255,0.55);">Clients served across Kenya</div>
-        </div>
-        <div style="background:var(--cream);border-radius:8px;padding:36px;display:flex;flex-direction:column;gap:8px;">
-          <div style="font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;color:var(--navy);">10+</div>
-          <div style="font-size:0.85rem;color:var(--muted);">Years of industry experience</div>
-        </div>
-        <div style="background:var(--cream);border-radius:8px;padding:36px;display:flex;flex-direction:column;gap:8px;">
-          <div style="font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;color:var(--navy);">4</div>
-          <div style="font-size:0.85rem;color:var(--muted);">Specialised service areas</div>
-        </div>
-        <div style="background:var(--gold);border-radius:8px;padding:36px;display:flex;flex-direction:column;gap:8px;">
-          <div style="font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;color:var(--navy);">98%</div>
-          <div style="font-size:0.85rem;color:var(--navy);font-weight:500;">Client satisfaction rate</div>
-        </div>
-      </div>
+    <div class="intro-pic-row fade-in">
+      <div class="intro-pic"><img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&q=80" alt="Hightowers team consultation" /></div>
+      <div class="intro-text"><span class="eyebrow">Who We Are</span><h2 class="section-title">Kenya's Trusted<br>Consultants Group</h2><div class="gold-line"></div><p style="color:var(--muted);line-height:1.9;margin-bottom:20px;">Hightowers Consultants Group is a trusted advisory firm dedicated to helping individuals and businesses achieve financial stability and long-term success. We combine deep industry knowledge with a thorough understanding of Kenya's financial ecosystem.</p><p style="color:var(--muted);line-height:1.9;margin-bottom:36px;">Founded in Nairobi, we have grown from a boutique practice into a firm serving hundreds of clients across personal, business, and institutional segments — maintaining the same client-first philosophy from day one.</p><a href="about.html" class="btn btn-dark">Our Story</a></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;" class="fade-in">
+      <div style="background:var(--navy);border-radius:8px;padding:40px 28px;text-align:center;"><div style="font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:700;color:var(--gold);" data-target="500" data-suffix="+">0+</div><div style="font-size:0.82rem;color:rgba(255,255,255,0.5);margin-top:8px;">Clients Served</div></div>
+      <div style="background:var(--cream);border-radius:8px;padding:40px 28px;text-align:center;"><div style="font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:700;color:var(--navy);" data-target="5" data-suffix="+">0+</div><div style="font-size:0.82rem;color:var(--muted);margin-top:8px;">Years Experience</div></div>
+      <div style="background:var(--cream);border-radius:8px;padding:40px 28px;text-align:center;"><div style="font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:700;color:var(--navy);" data-target="5" data-suffix="">0</div><div style="font-size:0.82rem;color:var(--muted);margin-top:8px;">Service Areas</div></div>
+      <div style="background:var(--gold);border-radius:8px;padding:40px 28px;text-align:center;"><div style="font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:700;color:var(--navy);" data-target="98" data-suffix="%">0%</div><div style="font-size:0.82rem;color:var(--navy);font-weight:600;margin-top:8px;">Client Satisfaction</div></div>
     </div>
   </div>
 </section>
 
-<!-- MISSION & VISION -->
-<section class="section" style="background:var(--navy);padding:80px 0;">
-  <div class="container">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;">
-      <div class="fade-in">
-        <span class="eyebrow">Our Mission</span>
-        <h2 class="section-title light" style="font-size:1.9rem;">To Empower Every Client<br>with Financial Clarity</h2>
-        <div class="gold-line"></div>
-        <p style="color:rgba(255,255,255,0.6);line-height:1.9;">
-          To empower our clients — individuals and businesses — with the knowledge, strategies, and tools they need to make sound financial decisions and achieve their unique goals. We measure our success by the lasting impact we create in the financial lives of the people we serve.
-        </p>
-      </div>
-      <div class="fade-in">
-        <span class="eyebrow">Our Vision</span>
-        <h2 class="section-title light" style="font-size:1.9rem;">A Leading Name in<br>Kenyan Finance</h2>
-        <div class="gold-line"></div>
-        <p style="color:rgba(255,255,255,0.6);line-height:1.9;">
-          To be recognised as East Africa's most trusted financial consultancy — known not just for technical expertise, but for genuine integrity, measurable client impact, and the relationships we build that extend far beyond a single financial transaction.
-        </p>
-      </div>
-    </div>
-  </div>
+<!-- LIFESTYLE IMAGES (anonymous business context) -->
+<section style="padding:0 0 80px;">
+  <div class="container"><div class="fade-in" style="text-align:center;max-width:560px;margin:0 auto 48px;"><span class="eyebrow">What We Do</span><h2 class="section-title">From Strategy to<br>Real-World Results</h2></div>
+  <div class="lifestyle-grid fade-in">
+    <div class="lifestyle-card"><img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=700&q=80" alt="Financial consultation" /><div class="lifestyle-card-label">One-on-One Consultations</div></div>
+    <div class="lifestyle-card"><img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=700&q=80" alt="Investment analysis" /><div class="lifestyle-card-label">Investment Analysis</div></div>
+    <div class="lifestyle-card"><img src="https://images.unsplash.com/photo-1664575602554-2087b04935a5?w=700&q=80" alt="Business growth" /><div class="lifestyle-card-label">Business Growth Planning</div></div>
+  </div></div>
 </section>
 
-<!-- VALUES -->
-<section class="section">
-  <div class="container">
-    <div class="fade-in" style="text-align:center;max-width:560px;margin:0 auto;">
-      <span class="eyebrow">Our Values</span>
-      <h2 class="section-title">The Principles That<br>Guide Everything We Do</h2>
-    </div>
-
-    <div class="values-grid fade-in">
-      <div class="value-card">
-        <div class="value-icon">⚖️</div>
-        <h3>Integrity</h3>
-        <p>We act with complete honesty and transparency in every interaction. Your trust is never taken for granted — it is earned and maintained every day.</p>
-      </div>
-      <div class="value-card">
-        <div class="value-icon">🏆</div>
-        <h3>Excellence</h3>
-        <p>We are committed to delivering the highest quality of financial insight and service — continuously improving and setting the standard in our field.</p>
-      </div>
-      <div class="value-card">
-        <div class="value-icon">🤝</div>
-        <h3>Commitment</h3>
-        <p>We put our clients' success at the centre of everything. From the first consultation to ongoing support, your goals drive our decisions.</p>
-      </div>
-      <div class="value-card">
-        <div class="value-icon">🔒</div>
-        <h3>Confidentiality</h3>
-        <p>Your financial information is always handled with the strictest discretion. We operate with robust data privacy standards at all times.</p>
-      </div>
-    </div>
-  </div>
+<!-- WHY CHOOSE US (refined, no personal names) -->
+<section class="section why-us">
+  <div class="container"><div class="why-grid"><div><span class="eyebrow">Why Hightowers</span><h2 class="section-title light">Built on Trust,<br>Driven by Results</h2><p style="color:rgba(255,255,255,0.55);font-size:1rem;line-height:1.8;margin-bottom:8px;">We combine industry knowledge, practical experience, and a deep understanding of Kenyan financial systems to deliver solutions that are effective and sustainable.</p><div class="why-features">
+    <div class="feature-item fade-in"><div class="feature-num">01</div><div class="feature-title">Professional &amp; Reliable</div><div class="feature-desc">Certified advisors with years of collective experience in the Kenyan market.</div></div>
+    <div class="feature-item fade-in"><div class="feature-num">02</div><div class="feature-title">Tailored Solutions</div><div class="feature-desc">No cookie-cutter advice. Every plan is crafted specifically for your situation.</div></div>
+    <div class="feature-item fade-in"><div class="feature-num">03</div><div class="feature-title">Client-First Approach</div><div class="feature-desc">Your financial wellbeing is our measure of success — nothing else.</div></div>
+    <div class="feature-item fade-in"><div class="feature-num">04</div><div class="feature-title">Strict Confidentiality</div><div class="feature-desc">Your financial information is handled with the highest level of discretion.</div></div>
+  </div></div>
+  <div class="why-visual"><div style="border-radius:8px;overflow:hidden;margin-bottom:16px;height:240px;"><img src="https://images.unsplash.com/photo-1556742393-d75f468bfcb0?w=800&q=80" alt="Professional advisory" style="width:100%;height:100%;object-fit:cover;" /></div>
+  <div class="why-card-main"><h4>Our Commitment to You</h4><ul class="checklist"><li><div class="check-icon">✓</div>Transparent, honest advice at every step</li><li><div class="check-icon">✓</div>Clear, jargon-free communication</li><li><div class="check-icon">✓</div>Ongoing support beyond first consultation</li><li><div class="check-icon">✓</div>Strategies aligned with your real goals</li><li><div class="check-icon">✓</div>Secure handling of all financial data</li></ul></div>
+  <div class="cards-row"><div class="why-card-accent"><div class="accent-num">A+</div><div class="accent-text">Service<br>Rating</div></div><div class="why-card-bottom"><div class="wb-icon">🏅</div><div class="wb-text"><strong>Trusted Advisors</strong>Serving Kenya since 2019</div></div></div></div></div></div>
 </section>
 
-<!-- TEAM -->
-<section class="section team-section">
-  <div class="container">
-    <div class="fade-in" style="text-align:center;max-width:560px;margin:0 auto;">
-      <span class="eyebrow">The Team</span>
-      <h2 class="section-title">The Experts Behind<br>Your Financial Success</h2>
-    </div>
-
-    <div class="team-grid">
-      <div class="team-card fade-in">
-        <div class="team-photo">H</div>
-        <div class="team-info">
-          <h3>David Hightower</h3>
-          <div class="role">Founder & Principal Advisor</div>
-          <p>15+ years in financial consulting. Specialises in business advisory and capital structuring for SMEs across Kenya and East Africa.</p>
-        </div>
-      </div>
-      <div class="team-card fade-in">
-        <div class="team-photo">H</div>
-        <div class="team-info">
-          <h3>Grace Otieno</h3>
-          <div class="role">Head of Tax & Compliance</div>
-          <p>CPA-K certified with deep expertise in KRA compliance, tax planning, and regulatory advisory for corporate and individual clients.</p>
-        </div>
-      </div>
-      <div class="team-card fade-in">
-        <div class="team-photo">H</div>
-        <div class="team-info">
-          <h3>Brian Muriuki</h3>
-          <div class="role">Investment Analyst</div>
-          <p>Specialises in portfolio construction, risk assessment, and investment planning — with a focus on NSE, real estate, and alternative assets.</p>
-        </div>
-      </div>
-    </div>
-  </div>
+<!-- TESTIMONIALS (removed specific names and locations, replaced with generic initials / no explicit location) -->
+<section class="section testimonials">
+  <div class="container"><div class="fade-in" style="text-align:center;max-width:560px;margin:0 auto;"><span class="eyebrow">Client Stories</span><h2 class="section-title">What Our Clients<br>Around the World Say</h2><div class="gold-line" style="margin:0 auto;"></div></div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card fade-in"><div class="quote-mark">"</div><p class="testimonial-text">Hightowers helped me completely reorganise my personal finances. Within six months I had a clear savings plan and was on track for my first investment. Highly professional and genuinely caring team.</p><div class="testimonial-author"><div class="author-avatar">SR</div><div><div class="stars">★★★★★</div><div class="author-name">S. Reynolds</div><div class="author-role">Entrepreneur</div></div></div></div>
+    <div class="testimonial-card fade-in"><div class="quote-mark">"</div><p class="testimonial-text">Their business advisory services helped us dramatically improve our cash flow and grow steadily through a very tough market period. The team is sharp, responsive, and always has your best interest at heart.</p><div class="testimonial-author"><div class="author-avatar">MC</div><div><div class="stars">★★★★★</div><div class="author-name">M. Charbonneau</div><div class="author-role">Managing Director</div></div></div></div>
+    <div class="testimonial-card fade-in"><div class="quote-mark">"</div><p class="testimonial-text">Clear, honest, and practical financial guidance. I finally understand where my money goes and how to make it work for me. I recommend Hightowers to every person in my circle who talks about money.</p><div class="testimonial-author"><div class="author-avatar">ND</div><div><div class="stars">★★★★★</div><div class="author-name">N. De Villiers</div><div class="author-role">Professional</div></div></div></div>
+    <div class="testimonial-card fade-in"><div class="quote-mark">"</div><p class="testimonial-text">The lending advisory service was exceptional. They helped me structure a loan that worked perfectly for my property investment. I couldn't have done it without their guidance.</p><div class="testimonial-author"><div class="author-avatar">JT</div><div><div class="stars">★★★★★</div><div class="author-name">J. Thornton</div><div class="author-role">Investor</div></div></div></div>
+    <div class="testimonial-card fade-in"><div class="quote-mark">"</div><p class="testimonial-text">Professional, discreet, and knowledgeable. Working with Hightowers on our East Africa expansion gave us the confidence and financial clarity we needed to succeed in a new market.</p><div class="testimonial-author"><div class="author-avatar">LS</div><div><div class="stars">★★★★★</div><div class="author-name">L. Schneider</div><div class="author-role">Corporate Executive</div></div></div></div>
+    <div class="testimonial-card fade-in"><div class="quote-mark">"</div><p class="testimonial-text">From tax compliance to investment planning, Hightowers covered everything. Their team's knowledge of both local and international financial landscapes is truly impressive.</p><div class="testimonial-author"><div class="author-avatar">RK</div><div><div class="stars">★★★★★</div><div class="author-name">R. Kumar</div><div class="author-role">Entrepreneur</div></div></div></div>
+  </div></div>
 </section>
 
 <!-- CTA -->
-<div class="cta-band">
-  <div class="container">
-    <div class="cta-inner">
-      <div>
-        <h2>Ready to Work With<br>Our Expert Team?</h2>
-        <p>Schedule a free introductory consultation today and see what we can do for you.</p>
-      </div>
-      <div class="cta-actions">
-        <a href="contact.html" class="btn btn-primary">Book a Consultation</a>
-        <a href="services.html" class="btn btn-outline">View Our Services</a>
-      </div>
-    </div>
-  </div>
-</div>
+<div class="cta-band"><div class="container"><div class="cta-inner"><div><h2>Ready to Take Control of<br>Your Financial Future?</h2><p>Let's build a strategy that works — for your life, your business, your goals.</p></div><div class="cta-actions"><a href="contact.html" class="btn btn-primary">Book Consultation</a><a href="services.html" class="btn btn-outline">View Services</a></div></div></div></div>
 
+<!-- FOOTER with updated logo style -->
 <footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="index.html" class="logo">
-          <div class="logo-mark">H</div>
-          <div class="logo-text">
-            <span class="logo-name">Hightowers</span>
-            <span class="logo-sub">Financial Consultants</span>
-          </div>
-        </a>
-        <p>Empowering individuals and businesses with clarity and strategy for lasting financial success in Kenya and beyond.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Services</h4>
-        <ul class="footer-links">
-          <li><a href="services.html">Personal Financial Planning</a></li>
-          <li><a href="services.html">Business Advisory</a></li>
-          <li><a href="services.html">Tax & Compliance</a></li>
-          <li><a href="services.html">Investment Guidance</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <ul class="footer-links">
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="blog.html">Insights & Blog</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <ul class="footer-links">
-          <li><a href="#">📍 NexGen mall Mombasa road 5th floor</a></li>
-          <li><a href="tel:+254735135951">📞 +254 735 135 951</a></li>
-          <li><a href="mailto:olelaeric@gmail.com">✉ olelaeric@gmail.com</a></li>
-          <li><a href="https://wa.me/254102696261">💬 WhatsApp Us</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 Hightowers Financial Consultants. All rights reserved.</span>
-      <div style="display:flex;gap:24px;">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-        <a href="#">Disclaimer</a>
-      </div>
-    </div>
-  </div>
+  <div class="container"><div class="footer-grid"><div class="footer-brand"><p>Empowering individuals and businesses with the clarity and strategy needed to achieve lasting financial success in Kenya and beyond.</p></div>
+  <div class="footer-col"><h4>Services</h4><ul class="footer-links"><li><a href="services.html">Personal Financial Planning</a></li><li><a href="services.html">Business Advisory</a></li><li><a href="services.html">Tax &amp; Compliance</a></li><li><a href="services.html">Investment Guidance</a></li><li><a href="services.html">Lending &amp; Loans</a></li></ul></div>
+  <div class="footer-col"><h4>Company</h4><ul class="footer-links"><li><a href="about.html">About Us</a></li><li><a href="blog.html">Insights &amp; Blog</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+  <div class="footer-col"><h4>Contact</h4><ul class="footer-links"><li><a href="#">📍 NexGen Mall, Mombasa Rd, 5th Floor</a></li><li><a href="tel:+254735135951">📞 +254 735 135 951</a></li><li><a href="mailto:olelaeric@gmail.com">✉ info@hightowers.co.ke</a></li><li><a href="https://wa.me/254102696261">💬 WhatsApp Us</a></li></ul></div></div>
+  <div class="footer-bottom"><span>© 2020 Hightowers Consultants Group. All rights reserved.</span><div style="display:flex;gap:24px;"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Disclaimer</a></div></div></div>
 </footer>
+<a href="https://wa.me/254102696261" class="wa-float" target="_blank">💬</a>
 
-<a href="https://wa.me/254700000000" class="wa-float" target="_blank" title="Chat on WhatsApp">💬</a>
-<script src="js/main.js"></script>
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => { if (window.scrollY > 50) navbar.classList.add('scrolled'); else navbar.classList.remove('scrolled'); });
+  navbar.classList.add('scrolled');
+  const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  function animateCounter(el) { if (el.dataset.animated) return; el.dataset.animated = 'true'; const target = +el.dataset.target; const suffix = el.dataset.suffix || ''; const duration = 1800; const startTime = performance.now(); function step(currentTime) { const elapsed = currentTime - startTime; const progress = Math.min(elapsed / duration, 1); const eased = 1 - Math.pow(1 - progress, 3); el.textContent = Math.round(eased * target) + suffix; if (progress < 1) requestAnimationFrame(step); } requestAnimationFrame(step); }
+  const counterObserver = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) animateCounter(e.target); }); }, { threshold: 0.4 });
+  document.querySelectorAll('[data-target]').forEach(el => counterObserver.observe(el));
+</script>
 </body>
 </html>
